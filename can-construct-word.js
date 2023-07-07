@@ -6,29 +6,33 @@
  */
 
 function canConstructWord(word, letters) {
+  //TODO: Move the below pseudocode into the top of the function
+
+  // Build a frequency object for word and letters
+  // Iterate through word, compare and make sure they have the same letters
+  // and values
   if (word === '') {
     return true;
   }
-
-  let wordObj = {};
-  let letterObj = {};
+  //TODO: Possibly rename wordObj to wordFreqs
+  let wordFreqs = {};
+  let letterFreqs = {};
   for (let i = 0; i < word.length; i++) {
-    wordObj[word[i]] = (wordObj[word[i]] || 0) + 1;
+    wordFreqs[word[i]] = (wordFreqs[word[i]] || 0) + 1;
   }
 
   for (let i = 0; i < letters.length; i++) {
-    letterObj[letters[i]] = (letterObj[letters[i]] || 0) + 1;
+    letterFreqs[letters[i]] = (letterFreqs[letters[i]] || 0) + 1;
   }
 
-  console.log("wordObj", wordObj, "letterObject", letterObj);
+  console.log("wordFreqs", wordFreqs, "letterFreqs", letterFreqs);
 
-  for (let key in letterObj) {
-    if (!(key in wordObj) || letterObj[key] < wordObj[key]) {
+  //TODO: rename key to letter
+  for (let letter in wordFreqs) {
+    if (!(letter in letterFreqs) || wordFreqs[letter] > letterFreqs[letter]) {
       return false;
     };
   }
   return true;
-  // Build a frequency object for word and letters
-  // Iterate through word, compare and make sure they have the same keys
-  // and values
+
 }
